@@ -5,12 +5,7 @@ const search =
 import Language from '../components/language.astro'
 
 import { data } from '../data'
-
-let { en, es, fr } = data(search)
-const myFilter= (table)=>table.filter(el=> el[2])
-en=myFilter(en)
-es=myFilter(es)
-fr=myFilter(fr)
+const { en, es, fr } = data(search)
 ---
 
 <html lang='en'>
@@ -51,9 +46,8 @@ fr=myFilter(fr)
       <input type='submit' hidden />
     </form>
 
-
-
     <h1>{search}</h1>
+
     <Language
       lang='English'
       list={en}
@@ -72,5 +66,6 @@ fr=myFilter(fr)
     <p class='center-align'><a href={`/?search=${search}`}>Faves</a> / <a
       href={`/full?search=${search}`}>Full</a
     ></p>
+    
   </body>
 </html>
