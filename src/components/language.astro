@@ -1,0 +1,19 @@
+---
+const { lang, list, color } = Astro.props
+---
+
+<p class='row'>
+  <!-- <span>{lang}</span> -->
+  {
+    list
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(site => (
+        <a
+          href={site[1]}
+          class={`btn ${color} col s4 l2`}
+        >
+          {site[0]}
+        </a>
+      ))
+  }
+</p>

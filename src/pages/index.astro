@@ -1,0 +1,185 @@
+---
+const search =
+  Astro.url.searchParams.get('search') || ''
+function add2(
+  name,
+  url,
+  _en = 'en',
+  _es = 'es',
+  _fr = 'fr'
+) {
+  en.push([name + ' fr', url(_en, _fr)])
+  en.push([name + ' es', url(_en, _es)])
+  es.push([name + ' en', url(_es, _en)])
+  es.push([name + ' fr', url(_es, _fr)])
+  fr.push([name + ' en', url(_fr, _en)])
+  fr.push([name + ' es', url(_fr, _es)])
+}
+function add1(
+  name,
+  url,
+  _en = 'en',
+  _es = 'es',
+  _fr = 'fr'
+) {
+  en.push([name, url(_en)])
+  es.push([name, url(_es)])
+  fr.push([name, url(_fr)])
+}
+const en = [
+  [
+    'mw',
+    `https://www.merriam-webster.com/dictionary/${search}`,
+  ],
+
+  // [
+  //   '⇆ fr',
+  //   `https://www.reverso.net/text-translation#sl=eng&tl=fra&text=${search}`,
+  // ],
+  // [
+  //   '⇆ es',
+  //   `https://www.reverso.net/text-translation#sl=eng&tl=spa&text=${search}`,
+  // ],
+  [
+    'ox am',
+    `https://www.oxfordlearnersdictionaries.com/definition/american_english/${search}`,
+  ],
+  [
+    'ox br',
+    `https://www.oxfordlearnersdictionaries.com/definition/english/${search}`,
+  ],
+  // [
+  //   'cube',
+  //   `http://seas3.elte.hu/cube/index.pl?s=${search}&fullw=on&uni8=on&trick=on&vocl=on&goal=on&t=&syllcount=&maxout=&wfreq=0-9&grammar=`,
+  // ],
+  [
+    'cube',
+    `http://seas3.elte.hu/cube/index.pl?s=${search}&fullw=on&uni8=on&strut=on&trick=on&t=&syllcount=&maxout=&wfreq=0-9&grammar=`,
+  ],
+]
+const es = [
+  [
+    'wr ⇒',
+    `https://www.wordreference.com/conj/esverbs.aspx?v=${search}`,
+  ],
+  // [
+  //   '⇆ fr',
+  //   `https://www.reverso.net/traducci%C3%B3n-texto#sl=spa&tl=fra&text=${search}`,
+  // ],
+  // [
+  //   '⇆ en',
+  //   `https://www.reverso.net/traducci%C3%B3n-texto#sl=spa&tl=eng&text=${search}`,
+  // ],
+]
+const fr = [
+  [
+    'r',
+    `https://dictionnaire.lerobert.com/definition/${search}`,
+  ],
+
+  // [
+  //   '⇆ en',
+  //   `https://www.reverso.net/traduction-texte#sl=fra&tl=eng&text=${search}`,
+  // ],
+  // [
+  //   '⇆ es',
+  //   `https://www.reverso.net/traduction-texte#sl=fra&tl=spa&text=${search}`,
+  // ],
+]
+
+add2(
+  'wr',
+  (sl, tl) =>
+    `https://www.wordreference.com/${sl}${tl}/${search}`
+)
+add2(
+  'dl',
+  (sl, tl) =>
+    `https://www.deepl.com/${sl}/translator#${sl}/${tl}/${search}`
+)
+// add2(
+//   'g',
+//   (sl, tl) =>
+//     `https://translate.google.com/?sl=${sl}&tl=${tl}&text=${search}&op=translate`
+// )
+// add2(
+//   'c',
+//   (sl, tl) =>
+//     `https://dictionary.cambridge.org/dictionary/${sl}-${tl}/${search}`,
+//   'english',
+//   'spanish',
+//   'french'
+// )
+add1(
+  'w',
+  sl =>
+    `https://${sl}.wiktionary.org/wiki/${search}`
+)
+add1(
+  'yg',
+  sl =>
+    `https://youglish.com/pronounce/${search}/${sl}`,
+  'english',
+  'spanish',
+  'french'
+)
+
+import Language from '../components/language.astro'
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link
+      rel='icon'
+      type='image/svg+xml'
+      href='/SD.png'
+    />
+    <meta
+      name='viewport'
+      content='width=device-width'
+    />
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
+    <title>
+      {
+        `${search && `${search} – `}SupraDictionary`
+      }
+    </title>
+    <link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
+    />
+  </head>
+
+  <body class='container'>
+    <form>
+      <input
+        type='text'
+        name='search'
+        autofocus
+        autocapitalize='off'
+      />
+      <input type='submit' hidden />
+    </form>
+
+    <h1>{search}</h1>
+    <Language
+      lang='English'
+      list={en}
+      color='purple'
+    />
+    <Language
+      lang='Spanish'
+      list={es}
+      color='red'
+    />
+    <Language
+      lang='French'
+      list={fr}
+      color='grey'
+    />
+  </body>
+</html>
