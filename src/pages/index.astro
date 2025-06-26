@@ -2,75 +2,16 @@
 const search =
   Astro.url.searchParams.get('search') || ''
 
-import Language from '../components/language.astro'
+import Main from '../components/main.astro'
 
 import { data } from '../data'
 
 let { en, es, fr } = data(search)
-const myFilter= (table)=>table.filter(el=> el[2])
-en=myFilter(en)
-es=myFilter(es)
-fr=myFilter(fr)
+const myFilter = table =>
+  table.filter(el => el[2])
+en = myFilter(en)
+es = myFilter(es)
+fr = myFilter(fr)
 ---
 
-<html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <link
-      rel='icon'
-      type='image/svg+xml'
-      href='/SD.png'
-    />
-    <meta
-      name='viewport'
-      content='width=device-width'
-    />
-    <meta
-      name='generator'
-      content={Astro.generator}
-    />
-    <title>
-      {
-        `${search && `${search} – `}SupraDictionary`
-      }
-    </title>
-    <link
-      rel='stylesheet'
-      href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
-    />
-  </head>
-
-  <body class='container'>
-    <form>
-      <input
-        type='text'
-        name='search'
-        autofocus
-        autocapitalize='off'
-      />
-      <input type='submit' hidden />
-    </form>
-
-
-
-    <h1>{search}</h1>
-    <Language
-      lang='English'
-      list={en}
-      color='purple'
-    />
-    <Language
-      lang='Spanish'
-      list={es}
-      color='red'
-    />
-    <Language
-      lang='French'
-      list={fr}
-      color='grey'
-    />
-    <p class='center-align'><a href={`/?search=${search}`}>Faves</a> / <a
-      href={`/full?search=${search}`}>Full</a
-    ></p>
-  </body>
-</html>
+<Main en={en} es={es} fr={fr} search={search} />

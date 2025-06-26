@@ -1,0 +1,105 @@
+---
+import { Fragment } from 'astro/jsx-runtime'
+import Language from './language.astro'
+
+const { en, es, fr, search } = Astro.props
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link
+      rel='icon'
+      type='image/svg+xml'
+      href='/SD.png'
+    />
+    <meta
+      name='viewport'
+      content='width=device-width'
+    />
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
+    <title>
+      {
+        `${search && `${search} – `}SupraDictionary`
+      }
+    </title>
+    <link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
+    />
+    <script
+      src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'
+      defer></script>
+    <script defer>
+      document.addEventListener(
+        'DOMContentLoaded',
+        function () {
+          const elems = document.querySelectorAll(
+            'input#input_text, textarea#textarea2'
+          )
+          window.M.CharacterCounter.init(elems)
+        }
+      )
+    </script>
+  </head>
+
+  <body class='container'>
+    <nav class='nav-extended blue-grey'>
+      <div class='nav-wrapper'>
+        <a
+          href={`/?search=${search}`}
+          class='brand-logo'>SupraDictionary</a
+        >
+      </div>
+      <div class='nav-content'>
+        <ul class='tabs tabs-transparent'>
+          <li class='tab'>
+            <a href={`/?search=${search}`}
+              >Faves</a
+            >
+          </li>
+          <li class='tab'>
+            <a href={`/full?search=${search}`}
+              >Full</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <form>
+      <div class='input-field'>
+        <input
+          id='search'
+          type='text'
+          class='validate'
+          name='search'
+          autofocus
+          autocapitalize='off'
+        />
+        <label for='search'>Search</label>
+      </div>
+      <input type='submit' hidden />
+    </form>
+
+    <h1>{search}</h1>
+    <Language
+      lang='English'
+      list={en}
+      color='purple'
+    />
+    <Language
+      lang='Spanish'
+      list={es}
+      color='red'
+    />
+    <Language
+      lang='French'
+      list={fr}
+      color='grey'
+    />
+  </body>
+</html>
