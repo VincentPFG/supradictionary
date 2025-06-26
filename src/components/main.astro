@@ -43,20 +43,20 @@ const { en, es, fr, search } = Astro.props
           window.M.CharacterCounter.init(elems)
         }
       )
-      document.addEventListener(
-        'DOMContentLoaded',
-        function () {
-          const el =
-            document.querySelectorAll('.tabs')
-          if (window.M) {
-            window.M.Tabs.init(el)
-          } else {
-            console.error(
-              'Materialize not loaded.'
-            )
-          }
-        }
-      )
+      // document.addEventListener(
+      //   'DOMContentLoaded',
+      //   function () {
+      //     const el =
+      //       document.querySelectorAll('.tabs')
+      //     if (window.M) {
+      //       window.M.Tabs.init(el)
+      //     } else {
+      //       console.error(
+      //         'Materialize not loaded.'
+      //       )
+      //     }
+      //   }
+      // )
     </script>
   </head>
 
