@@ -30,34 +30,6 @@ const { en, es, fr, search } = Astro.props
       rel='stylesheet'
       href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
     />
-    <script
-      src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'
-      defer></script>
-    <script defer>
-      document.addEventListener(
-        'DOMContentLoaded',
-        function () {
-          const elems = document.querySelectorAll(
-            'input#input_text, textarea#textarea2'
-          )
-          window.M.CharacterCounter.init(elems)
-        }
-      )
-      // document.addEventListener(
-      //   'DOMContentLoaded',
-      //   function () {
-      //     const el =
-      //       document.querySelectorAll('.tabs')
-      //     if (window.M) {
-      //       window.M.Tabs.init(el)
-      //     } else {
-      //       console.error(
-      //         'Materialize not loaded.'
-      //       )
-      //     }
-      //   }
-      // )
-    </script>
   </head>
 
   <body class='container'>
@@ -84,18 +56,18 @@ const { en, es, fr, search } = Astro.props
       </div>
     </nav>
 
-    <form>
-      <div class='input-field'>
-        <input
-          id='search'
-          type='text'
-          class='validate'
-          name='search'
-          autofocus
-          autocapitalize='off'
-        />
-        <label for='search'>Search</label>
-      </div>
+    <form class='card-panel'>
+      <label for='search'>Search</label>
+      <input
+        id='search'
+        type='text'
+        class='validate'
+        name='search'
+        autofocus
+        autocapitalize='off'
+        placeholder='Type then press Enter'
+      />
+
       <input type='submit' hidden />
     </form>
 
