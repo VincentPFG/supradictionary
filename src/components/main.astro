@@ -71,7 +71,13 @@ const { en, es, fr, search } = Astro.props
       <input type='submit' hidden />
     </form>
 
-    <h1>{search}</h1>
+    {
+      search && (
+        <p>
+          Links generated for: <b>{search}</b>
+        </p>
+      )
+    }
     <Language
       lang='English'
       list={en}
