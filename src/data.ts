@@ -36,12 +36,12 @@ export const data = (search: string) => {
     ],
 
     [
-      'ox am',
+      'ox 🇺🇸',
       `https://www.oxfordlearnersdictionaries.com/definition/american_english/${search}`,
       false,
     ],
     [
-      'ox br',
+      'ox',
       `https://www.oxfordlearnersdictionaries.com/definition/english/${search}`,
       false,
     ],
