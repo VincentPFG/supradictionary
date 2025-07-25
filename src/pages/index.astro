@@ -6,7 +6,7 @@ import Main from '../components/main.astro'
 
 import { data } from '../data'
 
-let { en, es, fr } = data(search)
+let { en, es, fr, de } = data(search)
 const myFilter = table =>
   table.filter(el => el[2])
 en = myFilter(en)
@@ -14,4 +14,10 @@ es = myFilter(es)
 fr = myFilter(fr)
 ---
 
-<Main en={en} es={es} fr={fr} search={search} />
+<Main
+  en={en}
+  es={es}
+  fr={fr}
+  de={de}
+  search={search}
+/>

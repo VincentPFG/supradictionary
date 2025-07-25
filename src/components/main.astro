@@ -2,7 +2,7 @@
 import { Fragment } from 'astro/jsx-runtime'
 import Language from './language.astro'
 
-const { en, es, fr, search } = Astro.props
+const { en, es, fr, search, de } = Astro.props
 ---
 
 <html lang='en'>
@@ -92,6 +92,11 @@ const { en, es, fr, search } = Astro.props
       lang='French'
       list={fr}
       color='grey'
+    />
+    <Language
+      lang='German'
+      list={de}
+      color='green'
     />
   </body>
 </html>

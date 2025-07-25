@@ -5,7 +5,13 @@ const search =
 import Main from '../components/main.astro'
 
 import { data } from '../data'
-const { en, es, fr } = data(search)
+const { en, es, fr, de } = data(search)
 ---
 
-<Main en={en} es={es} fr={fr} search={search} />
+<Main
+  en={en}
+  es={es}
+  fr={fr}
+  de={de}
+  search={search}
+/>

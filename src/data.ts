@@ -51,6 +51,11 @@ export const data = (search: string) => {
       `http://seas3.elte.hu/cube/index.pl?s=${search}&fullw=on&uni8=on&strut=on&trick=on&t=&syllcount=&maxout=&wfreq=0-9&grammar=`,
       false,
     ],
+    [
+      'c de',
+      `https://dictionary.cambridge.org/dictionary/english-german/${search}`,
+      true,
+    ],
   ]
   const es = [
     [
@@ -64,6 +69,18 @@ export const data = (search: string) => {
       'r',
       `https://dictionnaire.lerobert.com/definition/${search}`,
       false,
+    ],
+  ]
+  const de = [
+    [
+      'c en',
+      `https://dictionary.cambridge.org/dictionary/german-english/${search}`,
+      true,
+    ],
+    [
+      'w',
+      `https://de.wiktionary.org/wiki/${search}`,
+      true,
     ],
   ]
 
@@ -95,5 +112,5 @@ export const data = (search: string) => {
     'french'
   )
 
-  return { en, es, fr }
+  return { en, es, fr, de }
 }
