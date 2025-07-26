@@ -1,0 +1,7 @@
+    add({
+    name:,
+    url:(search)=>,
+    source:'',
+    target:'',
+    fave:''
+    })

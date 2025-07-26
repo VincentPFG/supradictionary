@@ -1,23 +1,214 @@
 ---
 const search =
   Astro.url.searchParams.get('search') || ''
+const selectedLangs =
+  Astro.url.searchParams.getAll('lang') // ['en', 'fr']
+const full =
+  Astro.url.searchParams.get('full') === 'true'
 
+import { callSafely } from 'astro:actions'
+import Language from '../components/language.astro'
 import Main from '../components/main.astro'
 
-import { data } from '../data'
+// import { data } from '../data'
 
-let { en, es, fr, de } = data(search)
-const myFilter = table =>
-  table.filter(el => el[2])
-en = myFilter(en)
-es = myFilter(es)
-fr = myFilter(fr)
+// let { en, es, fr, de } = data(search)
+// const myFilter = table =>
+//   table.filter(el => el[2])
+// en = myFilter(en)
+// es = myFilter(es)
+// fr = myFilter(fr)
+console.log('Selected langs:', selectedLangs)
+import { dictionaries } from '../utilities'
+const visibleDictionaries = dictionaries.filter(
+  dic =>
+    dic.target &&
+    selectedLangs.includes(dic.target) &&
+    (full || dic.fave)
+)
+
+// const en = dictionaries.filter(
+//   el => (el.source = 'en')
+// )
+console.log(
+  visibleDictionaries.map(d => d.target)
+)
+console.log(visibleDictionaries)
+console.log(full)
 ---
 
-<Main
-  en={en}
-  es={es}
-  fr={fr}
-  de={de}
-  search={search}
-/>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link
+      rel='icon'
+      type='image/svg+xml'
+      href='/SD.png'
+    />
+    <meta
+      name='viewport'
+      content='width=device-width'
+    />
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
+    <title>
+      {
+        `${search && `${search} – `}SupraDictionary`
+      }
+    </title>
+    <link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
+    />
+  </head>
+
+  <body class='container'>
+    <nav class='nav-extended blue-grey'>
+      <div class='nav-wrapper'>
+        <a href={'/'} class='brand-logo center'
+          >SupraDictionary</a
+        >
+      </div>
+
+      <div class='nav-content'>
+        <ul class='tabs tabs-transparent'>
+          <li class='tab'>
+            <a href={`/?search=${search}`}
+              >Faves</a
+            >
+          </li>
+          <li class='tab'>
+            <a href={`/full?search=${search}`}
+              >Full</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <form class='card-panel'>
+      {
+        ['en', 'es', 'fr', 'de', 'it', 'pt'].map(
+          lang => (
+            <label>
+              <input
+                type='checkbox'
+                name='lang'
+                value={lang}
+                checked={
+                  selectedLangs.includes(lang)
+                    ? true
+                    : undefined
+                }
+              />
+              <span>{lang.toUpperCase()}</span>
+            </label>
+          )
+        )
+      }
+      <label>
+        <input
+          type='checkbox'
+          name='full'
+          value='true'
+          checked={full ? true : undefined}
+        />
+        <span>Full</span>
+      </label>
+      <label for='search'>Search</label>
+      <input
+        id='search'
+        type='text'
+        class='validate'
+        name='search'
+        autofocus
+        autocapitalize='off'
+        placeholder='Type then press Enter'
+      />
+
+      <input type='submit' hidden />
+    </form>
+
+    {
+      search && (
+        <p>
+          Links generated for: <b>{search}</b>
+        </p>
+      )
+    }
+    {
+      selectedLangs.includes('en') && (
+        <Language
+          lang='en'
+          list={visibleDictionaries}
+          color='purple'
+          search={search}
+        />
+      )
+    }
+    {
+      selectedLangs.includes('es') && (
+        <Language
+          lang='es'
+          list={visibleDictionaries}
+          color='red'
+          search={search}
+        />
+      )
+    }
+    {
+      selectedLangs.includes('fr') && (
+        <Language
+          lang='fr'
+          list={visibleDictionaries}
+          color='grey'
+          search={search}
+        />
+      )
+    }
+    {
+      selectedLangs.includes('de') && (
+        <Language
+          lang='de'
+          list={visibleDictionaries}
+          color='black'
+          search={search}
+        />
+      )
+    }
+    {
+      selectedLangs.includes('it') && (
+        <Language
+          lang='it'
+          list={visibleDictionaries}
+          color='blue'
+          search={search}
+        />
+      )
+    }
+    {
+      selectedLangs.includes('pt') && (
+        <Language
+          lang='pt'
+          list={visibleDictionaries}
+          color='green'
+          search={search}
+        />
+      )
+    }
+
+    <!-- <Language
+      lang='es'
+      list={dictionaries}
+      color='red'
+    />
+    <Language
+      lang='fr'
+      list={dictionaries}
+      color='grey'
+    /> -->
+    <!-- <Language lang='de' list={de} color='green' /> -->
+  </body>
+</html>

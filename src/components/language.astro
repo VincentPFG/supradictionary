@@ -1,18 +1,21 @@
 ---
-const { lang, list, color } = Astro.props
+const { lang, list, color, search } = Astro.props
 ---
 
 <p class='row'>
   <!-- <span>{lang}</span> -->
   {
     list
-      .sort((a, b) => a[0].localeCompare(b[0]))
-      .map(site => (
+      .filter(dic => dic.source == lang)
+      .sort((a, b) =>
+        a.name.localeCompare(b.name)
+      )
+      .map(dic => (
         <a
-          href={site[1]}
+          href={dic.url(search)}
           class={`btn ${color} col s4 l2`}
         >
-          {site[0]}
+          {dic.name}
         </a>
       ))
   }
