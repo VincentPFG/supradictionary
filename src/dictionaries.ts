@@ -79,27 +79,27 @@ add({
   fave: true,
 })
 // Oxford
-add({
-  name: 'ox',
+// add({
+//   name: 'ox',
 
-  url: search =>
-    `https://www.oxfordlearnersdictionaries.com/definition/english/${search}`,
-  source: 'en',
-})
-add({
-  name: 'ox 🇺🇸',
+//   url: search =>
+//     `https://www.oxfordlearnersdictionaries.com/definition/english/${search}`,
+//   source: 'en',
+// })
+// add({
+//   name: 'ox 🇺🇸',
 
-  url: search =>
-    `https://www.oxfordlearnersdictionaries.com/definition/american_english/${search}`,
-  source: 'en',
-})
+//   url: search =>
+//     `https://www.oxfordlearnersdictionaries.com/definition/american_english/${search}`,
+//   source: 'en',
+// })
 // Cube
-add({
-  name: 'cube',
-  url: search =>
-    `http://seas3.elte.hu/cube/index.pl?s=${search}&fullw=on&uni8=on&strut=on&trick=on&t=&syllcount=&maxout=&wfreq=0-9&grammar=`,
-  source: 'en',
-})
+// add({
+//   name: 'cube',
+//   url: search =>
+//     `http://seas3.elte.hu/cube/index.pl?s=${search}&fullw=on&uni8=on&strut=on&trick=on&t=&syllcount=&maxout=&wfreq=0-9&grammar=`,
+//   source: 'en',
+// })
 // Cambrige
 add({
   name: 'c de',
