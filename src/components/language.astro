@@ -1,5 +1,7 @@
 ---
 const { lang, list, color, search } = Astro.props
+const full =
+  Astro.url.searchParams.get('full') === 'true'
 ---
 
 <p class='row'>
@@ -13,7 +15,7 @@ const { lang, list, color, search } = Astro.props
       .map(dic => (
         <a
           href={dic.url(search)}
-          class={`btn-small ${color} col s3 l2`}
+          class={`btn ${color} col ${full ? 's3' : 's4'} l2`}
         >
           {dic.name}
         </a>

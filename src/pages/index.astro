@@ -93,36 +93,46 @@ import 'materialize-css/dist/css/materialize.min.css'
           >
         </div> -->
 
-      <div class='row valign-wrapper'>
+      <div
+        class='center-align'
+        style='margin-top: 25vh'
+      >
+        <a
+          href=`/?search=${search}${full ? '' :'&full=true'}`
+          class='btn blue-grey'
+          >{full ? 'light' : 'full'}</a
+        >
+      </div>
+      <div>
+        <form>
+          <label for='search'>Search</label>
+          <input
+            type='text'
+            name='search'
+            autofocus
+            autocapitalize='off'
+            placeholder='Type then press Enter'
+          />
+          {
+            full && (
+              <input
+                type='hidden'
+                name='full'
+                value='true'
+              />
+            )
+          }
+        </form>
+      </div>
+
+      <!-- <div class='row valign-wrapper'>
         <div class='col s3 l2'>
-          <a
-            href=`/?search=${search}${full ? '' :'&full=true'}`
-            class='btn-small blue-grey'
-            >{full ? 'light' : 'full'}</a
-          >
+          
         </div>
         <div class='col s9 l10'>
-          <form>
-            <label for='search'>Search</label>
-            <input
-              type='text'
-              name='search'
-              autofocus
-              autocapitalize='off'
-              placeholder='Type then press Enter'
-            />
-            {
-              full && (
-                <input
-                  type='hidden'
-                  name='full'
-                  value='true'
-                />
-              )
-            }
-          </form>
+          
         </div>
-      </div>
+      </div> -->
       <!-- </form> -->
 
       {
