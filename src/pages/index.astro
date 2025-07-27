@@ -1,10 +1,9 @@
 ---
 const search =
   Astro.url.searchParams.get('search') || ''
-const selectedLangs =
-  Astro.url.searchParams.getAll('lang') // ['en', 'fr']
-const full =
-  Astro.url.searchParams.get('full') === 'true'
+const selectedLangs = ['en', 'es', 'fr']
+const full = Astro.url.searchParams.get('full') === 'true'
+// const full = Astro.params.full
 
 import Language from '../components/language.astro'
 import { dictionaries } from '../dictionaries'
@@ -45,17 +44,15 @@ import 'materialize-css/dist/css/materialize.min.css'
   <body>
     <nav class='blue-grey'>
       <div class='nav-wrapper'>
-        <a
-          href={'/?lang=en&lang=es&lang=fr'}
-          class='brand-logo center'
+        <a href={'/'} class='brand-logo center'
           >SupraDictionary</a
         >
       </div>
     </nav>
 
     <div class='container'>
-      <form>
-        <div class='row'>
+      <!-- <form> -->
+        <!-- <div class='row'>
           {
             [
               'en',
@@ -93,19 +90,35 @@ import 'materialize-css/dist/css/materialize.min.css'
           <button class='btn-small s4 l2'
             >search</button
           >
-        </div>
+        </div> -->
 
-        <div class='row'>
-          <label for='search'>Search</label>
-          <input
-            type='text'
-            name='search'
-            autofocus
-            autocapitalize='off'
-            placeholder='Type then press Enter'
-          />
+        <div class='row valign-wrapper'>
+          <div class='col s3 l2'>
+            {
+              full ? (
+                              <a href=`/?search=${search}` class="btn-small">light</a>
+
+              ) : (
+               
+                <a href=`/?search=${search}&full=true` class="btn-small">full</a>
+              )
+            }
+          </div>
+          <div class='col s9 l10'>
+            <form>
+              <label for='search'>Search</label>
+              <input
+                type='text'
+                name='search'
+                autofocus
+                autocapitalize='off'
+                placeholder='Type then press Enter'
+              />
+              {full &&  <input type="hidden" name="full" value="true">}
+            </form>
+          </div>
         </div>
-      </form>
+      <!-- </form> -->
 
       {
         search && (
