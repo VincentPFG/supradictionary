@@ -7,7 +7,7 @@ const full =
   Astro.url.searchParams.get('full') === 'true'
 
 import Language from '../components/language.astro'
-import { dictionaries } from '../utilities'
+import { dictionaries } from '../dictionaries'
 
 const visibleDictionaries = dictionaries.filter(
   dic =>
@@ -15,6 +15,8 @@ const visibleDictionaries = dictionaries.filter(
       selectedLangs.includes(dic.target)) &&
     (full || dic.fave)
 )
+
+import 'materialize-css/dist/css/materialize.min.css'
 ---
 
 <html lang='en'>
@@ -38,10 +40,6 @@ const visibleDictionaries = dictionaries.filter(
         `${search && `${search} – `}SupraDictionary`
       }
     </title>
-    <link
-      rel='stylesheet'
-      href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
-    />
   </head>
 
   <body>
@@ -90,21 +88,21 @@ const visibleDictionaries = dictionaries.filter(
             />
             <span>Full</span>
           </label>
+          <button class='btn-small s4 l2'
+            >search</button
+          >
         </div>
 
         <div class='row'>
           <label for='search'>Search</label>
           <input
-            id='search'
             type='text'
-            class='validate'
             name='search'
             autofocus
             autocapitalize='off'
             placeholder='Type then press Enter'
           />
         </div>
-        <input type='submit' hidden />
       </form>
 
       {

@@ -13,7 +13,7 @@ const { lang, list, color, search } = Astro.props
       .map(dic => (
         <a
           href={dic.url(search)}
-          class={`btn ${color} col s4 l2`}
+          class={`btn-small ${color} col s3 l2`}
         >
           {dic.name}
         </a>

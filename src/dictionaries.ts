@@ -11,7 +11,7 @@ type Dictionary = {
   url: (search: string) => string
   source: Language
   target?: Language
-  fave: boolean
+  fave?: boolean
 }
 
 export const dictionaries = []
@@ -46,6 +46,29 @@ function add2(
     }
   }
 }
+function add1(
+  name: string,
+  toUrl,
+  fave = false,
+  parse = {
+    en: 'en',
+    es: 'es',
+    fr: 'fr',
+    de: 'de',
+    pt: 'pt',
+    it: 'it',
+  }
+) {
+  const entries = Object.entries(parse)
+  for (const [keyA, entryA] of entries) {
+    add({
+      name,
+      url: toUrl(entryA),
+      source: keyA,
+      fave,
+    })
+  }
+}
 
 // Merriam-Webster
 add({
@@ -62,7 +85,6 @@ add({
   url: search =>
     `https://www.oxfordlearnersdictionaries.com/definition/english/${search}`,
   source: 'en',
-  fave: false,
 })
 add({
   name: 'ox 🇺🇸',
@@ -70,7 +92,6 @@ add({
   url: search =>
     `https://www.oxfordlearnersdictionaries.com/definition/american_english/${search}`,
   source: 'en',
-  fave: false,
 })
 // Cube
 add({
@@ -78,7 +99,6 @@ add({
   url: search =>
     `http://seas3.elte.hu/cube/index.pl?s=${search}&fullw=on&uni8=on&strut=on&trick=on&t=&syllcount=&maxout=&wfreq=0-9&grammar=`,
   source: 'en',
-  fave: false,
 })
 // Cambrige
 add({
@@ -103,4 +123,38 @@ add2(
   (sl, tl) => search =>
     `https://www.wordreference.com/${sl}${tl}/${search}`,
   true
+)
+// Robert
+add({
+  name: 'r',
+  url: search =>
+    `https://dictionnaire.lerobert.com/definition/${search}`,
+  source: 'fr',
+})
+// Wiktionary
+add1(
+  'w',
+  sl => search =>
+    `https://${sl}.wiktionary.org/wiki/${search}`
+)
+// YouGlish
+add1(
+  'yg',
+  sl => search =>
+    `https://youglish.com/pronounce/${search}/${sl}`,
+  false,
+  {
+    en: 'english',
+    es: 'spanish',
+    fr: 'french',
+    de: 'german',
+    it: 'italian',
+    pt: 'portuguese',
+  }
+)
+// DeepL
+add2(
+  'dl',
+  (sl, tl) => search =>
+    `https://www.deepl.com/${sl}/translator#${sl}/${tl}/${search}`
 )
