@@ -2,7 +2,8 @@
 const search =
   Astro.url.searchParams.get('search') || ''
 const selectedLangs = ['en', 'es', 'fr']
-const full = Astro.url.searchParams.get('full') === 'true'
+const full =
+  Astro.url.searchParams.get('full') === 'true'
 // const full = Astro.params.full
 
 import Language from '../components/language.astro'
@@ -52,7 +53,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 
     <div class='container'>
       <!-- <form> -->
-        <!-- <div class='row'>
+      <!-- <div class='row'>
           {
             [
               'en',
@@ -92,32 +93,36 @@ import 'materialize-css/dist/css/materialize.min.css'
           >
         </div> -->
 
-        <div class='row valign-wrapper'>
-          <div class='col s3 l2'>
+      <div class='row valign-wrapper'>
+        <div class='col s3 l2'>
+          <a
+            href=`/?search=${search}${full ? '' :'&full=true'}`
+            class='btn-small blue-grey'
+            >{full ? 'light' : 'full'}</a
+          >
+        </div>
+        <div class='col s9 l10'>
+          <form>
+            <label for='search'>Search</label>
+            <input
+              type='text'
+              name='search'
+              autofocus
+              autocapitalize='off'
+              placeholder='Type then press Enter'
+            />
             {
-              full ? (
-                              <a href=`/?search=${search}` class="btn-small">light</a>
-
-              ) : (
-               
-                <a href=`/?search=${search}&full=true` class="btn-small">full</a>
+              full && (
+                <input
+                  type='hidden'
+                  name='full'
+                  value='true'
+                />
               )
             }
-          </div>
-          <div class='col s9 l10'>
-            <form>
-              <label for='search'>Search</label>
-              <input
-                type='text'
-                name='search'
-                autofocus
-                autocapitalize='off'
-                placeholder='Type then press Enter'
-              />
-              {full &&  <input type="hidden" name="full" value="true">}
-            </form>
-          </div>
+          </form>
         </div>
+      </div>
       <!-- </form> -->
 
       {
