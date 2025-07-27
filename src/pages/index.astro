@@ -43,7 +43,10 @@ import 'materialize-css/dist/css/materialize.min.css'
   </head>
 
   <body>
-    <nav class='blue-grey'>
+    <nav
+      class='blue-grey'
+      style='margin-bottom: 25vh'
+    >
       <div class='nav-wrapper'>
         <a href={'/'} class='brand-logo center'
           >SupraDictionary</a
@@ -93,10 +96,7 @@ import 'materialize-css/dist/css/materialize.min.css'
           >
         </div> -->
 
-      <div
-        class='center-align'
-        style='margin-top: 25vh'
-      >
+      <div class='center-align'>
         <a
           href=`/?search=${search}${full ? '' :'&full=true'}`
           class='btn blue-grey'
