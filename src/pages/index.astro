@@ -1,17 +1,121 @@
 ---
 const search =
   Astro.url.searchParams.get('search') || ''
+const selectedLangs = ['en', 'es', 'fr']
+const full =
+  Astro.url.searchParams.get('full') === 'true'
+// const full = Astro.params.full
 
-import Main from '../components/main.astro'
+import Language from '../components/language.astro'
+import { dictionaries } from '../dictionaries'
 
-import { data } from '../data'
+const visibleDictionaries = dictionaries.filter(
+  dic =>
+    (!dic.target ||
+      selectedLangs.includes(dic.target)) &&
+    (full || dic.fave)
+)
 
-let { en, es, fr } = data(search)
-const myFilter = table =>
-  table.filter(el => el[2])
-en = myFilter(en)
-es = myFilter(es)
-fr = myFilter(fr)
+import 'materialize-css/dist/css/materialize.min.css'
 ---
 
-<Main en={en} es={es} fr={fr} search={search} />
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link
+      rel='icon'
+      type='image/svg+xml'
+      href='/SD.png'
+    />
+    <meta
+      name='viewport'
+      content='width=device-width'
+    />
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
+    <title>
+      {
+        `${search && `${search} – `}SupraDictionary`
+      }
+    </title>
+  </head>
+
+  <body>
+    <header>
+      <nav class='blue-grey'>
+        <div class='nav-wrapper'>
+          <a href={'/'} class='brand-logo center'
+            >SupraDictionary</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main class='container'>
+      <div
+        class='show-on-small hide-on-med-and-up'
+        style='height:5cm'
+      >
+      </div>
+      <p class='center-align'>
+        <a
+          href=`/?search=${search}${full ? '' :'&full=true'}`
+          class='btn blue-grey'
+          >{full ? 'light' : 'full'}</a
+        >
+      </p>
+      <div>
+        <form>
+          <label for='search'>Search</label>
+          <input
+            type='text'
+            name='search'
+            autofocus
+            autocapitalize='off'
+            placeholder='Type then press Enter'
+          />
+          {
+            full && (
+              <input
+                type='hidden'
+                name='full'
+                value='true'
+              />
+            )
+          }
+        </form>
+      </div>
+
+      {
+        search && (
+          <p>
+            Links generated for: <b>{search}</b>
+          </p>
+        )
+      }
+
+      <Language
+        lang='en'
+        list={visibleDictionaries}
+        color='purple'
+        search={search}
+      />
+
+      <Language
+        lang='es'
+        list={visibleDictionaries}
+        color='red'
+        search={search}
+      />
+
+      <Language
+        lang='fr'
+        list={visibleDictionaries}
+        color='grey'
+        search={search}
+      />
+    </main>
+  </body>
+</html>
