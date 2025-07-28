@@ -17,6 +17,7 @@ const visibleDictionaries = dictionaries.filter(
 )
 
 import 'materialize-css/dist/css/materialize.min.css'
+import '../styles/index.css'
 ---
 
 <html lang='en'>
@@ -42,11 +43,7 @@ import 'materialize-css/dist/css/materialize.min.css'
     </title>
   </head>
 
-  <body
-    style='display: flex;
-    min-height: 100dvh;
-    flex-direction: column;'
-  >
+  <body>
     <header>
       <nav class='blue-grey'>
         <div class='nav-wrapper'>
@@ -57,10 +54,7 @@ import 'materialize-css/dist/css/materialize.min.css'
       </nav>
     </header>
 
-    <main
-      class='container'
-      style='margin-top: 20dvh;flex: 1 0 auto;'
-    >
+    <main class='container'>
       <div class='center-align'>
         <a
           href=`/?search=${search}${full ? '' :'&full=true'}`

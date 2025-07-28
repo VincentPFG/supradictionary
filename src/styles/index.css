@@ -1,0 +1,10 @@
+body {
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+}
+
+main {
+  margin-top: 20dvh;
+  flex: 1 0 auto;
+}
