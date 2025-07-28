@@ -42,18 +42,24 @@ import 'materialize-css/dist/css/materialize.min.css'
     </title>
   </head>
 
-  <body>
-    <nav class='blue-grey'>
-      <div class='nav-wrapper'>
-        <a href={'/'} class='brand-logo center'
-          >SupraDictionary</a
-        >
-      </div>
-    </nav>
+  <body
+    style='display: flex;
+    min-height: 100vh;
+    flex-direction: column;'
+  >
+    <header>
+      <nav class='blue-grey'>
+        <div class='nav-wrapper'>
+          <a href={'/'} class='brand-logo center'
+            >SupraDictionary</a
+          >
+        </div>
+      </nav>
+    </header>
 
-    <div
+    <main
       class='container'
-      style='margin-top: 5cm'
+      style='margin-top: 20vh;flex: 1 0 auto;'
     >
       <div class='center-align'>
         <a
@@ -91,66 +97,28 @@ import 'materialize-css/dist/css/materialize.min.css'
           </p>
         )
       }
-      {
-        selectedLangs.includes('en') && (
-          <Language
-            lang='en'
-            list={visibleDictionaries}
-            color='purple'
-            search={search}
-          />
-        )
-      }
-      {
-        selectedLangs.includes('es') && (
-          <Language
-            lang='es'
-            list={visibleDictionaries}
-            color='red'
-            search={search}
-          />
-        )
-      }
-      {
-        selectedLangs.includes('fr') && (
-          <Language
-            lang='fr'
-            list={visibleDictionaries}
-            color='grey'
-            search={search}
-          />
-        )
-      }
-      {
-        selectedLangs.includes('de') && (
-          <Language
-            lang='de'
-            list={visibleDictionaries}
-            color='black'
-            search={search}
-          />
-        )
-      }
-      {
-        selectedLangs.includes('it') && (
-          <Language
-            lang='it'
-            list={visibleDictionaries}
-            color='blue'
-            search={search}
-          />
-        )
-      }
-      {
-        selectedLangs.includes('pt') && (
-          <Language
-            lang='pt'
-            list={visibleDictionaries}
-            color='green'
-            search={search}
-          />
-        )
-      }
-    </div>
+
+      <Language
+        lang='en'
+        list={visibleDictionaries}
+        color='purple'
+        search={search}
+      />
+
+      <Language
+        lang='es'
+        list={visibleDictionaries}
+        color='red'
+        search={search}
+      />
+
+      <Language
+        lang='fr'
+        list={visibleDictionaries}
+        color='grey'
+        search={search}
+      />
+    </main>
+    <footer>test</footer>
   </body>
 </html>
