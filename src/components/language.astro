@@ -1,7 +1,10 @@
 ---
-const { lang, list, color, search } = Astro.props
+const search =
+  Astro.url.searchParams.get('search') || ''
 const full =
   Astro.url.searchParams.get('full') === 'true'
+
+const { lang, list, color } = Astro.props
 ---
 
 <p class='row'>
