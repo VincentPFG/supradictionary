@@ -54,16 +54,40 @@ import 'materialize-css/dist/css/materialize.min.css'
     </header>
 
     <main class='container'>
-      <div
+      <!-- <div
         class='show-on-small hide-on-med-and-up'
         style='height:5cm'
-      >
-      </div>
+      > -->
+
+      <p class='center'>
+        <span class='purple white-text chip'
+          >English</span
+        >
+        <span class='red white-text chip'
+          >Spanish</span
+        >
+        <span class='grey white-text chip'
+          >French</span
+        >
+      </p>
+
       <p class='center-align'>
-        <a
+        <!-- <a
           href=`/?search=${search}${full ? '' :'&full=true'}`
           class='btn blue-grey'
-          >{full ? 'light' : 'full'}</a
+          >{
+            full
+              ? 'light version'
+              : 'full version'
+          }</a
+        > -->
+        <a
+          href=`/?search=${search}`
+          class='btn blue-grey'>light version</a
+        >
+        <a
+          href=`/?search=${search}&full=true`
+          class='btn blue-grey'>full version</a
         >
       </p>
       <div>
