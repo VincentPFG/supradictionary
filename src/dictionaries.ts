@@ -86,13 +86,13 @@ add({
 //     `https://www.oxfordlearnersdictionaries.com/definition/english/${search}`,
 //   source: 'en',
 // })
-// add({
-//   name: 'ox 🇺🇸',
+add({
+  name: 'ox',
 
-//   url: search =>
-//     `https://www.oxfordlearnersdictionaries.com/definition/american_english/${search}`,
-//   source: 'en',
-// })
+  url: search =>
+    `https://www.oxfordlearnersdictionaries.com/definition/american_english/${search}`,
+  source: 'en',
+})
 // Cube
 // add({
 //   name: 'cube',

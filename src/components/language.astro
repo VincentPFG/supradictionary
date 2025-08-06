@@ -1,8 +1,8 @@
 ---
 const search =
   Astro.url.searchParams.get('search') || ''
-const full =
-  Astro.url.searchParams.get('full') === 'true'
+const full = true
+// Astro.url.searchParams.get('full') === 'true'
 
 const { lang, list, color } = Astro.props
 ---

@@ -2,8 +2,8 @@
 const search =
   Astro.url.searchParams.get('search') || ''
 const selectedLangs = ['en', 'es', 'fr']
-const full =
-  Astro.url.searchParams.get('full') === 'true'
+const full = true
+// Astro.url.searchParams.get('full') === 'true'
 // const full = Astro.params.full
 
 import Language from '../components/language.astro'
@@ -71,8 +71,8 @@ import 'materialize-css/dist/css/materialize.min.css'
         >
       </p>
 
-      <p class='center-align'>
-        <!-- <a
+      <!-- <p class='center-align'> -->
+      <!-- <a
           href=`/?search=${search}${full ? '' :'&full=true'}`
           class='btn blue-grey'
           >{
@@ -81,26 +81,26 @@ import 'materialize-css/dist/css/materialize.min.css'
               : 'full version'
           }</a
         > -->
-        <a
-          href=`/?search=${search}`
-          class='btn blue-grey'>light version</a
-        >
-        <a
+      <!-- <a
+        href=`/?search=${search}`
+        class='btn blue-grey'>light version</a
+      > -->
+      <!-- <a
           href=`/?search=${search}&full=true`
           class='btn blue-grey'>full version</a
         >
-      </p>
-      <div>
-        <form>
-          <label for='search'>Search</label>
-          <input
-            type='text'
-            name='search'
-            autofocus
-            autocapitalize='off'
-            placeholder='Type then press Enter'
-          />
-          {
+      </p> -->
+      <!-- <div> -->
+      <form>
+        <label for='search'>Search</label>
+        <input
+          type='text'
+          name='search'
+          autofocus
+          autocapitalize='off'
+          placeholder='Type then press Enter'
+        />
+        <!-- {
             full && (
               <input
                 type='hidden'
@@ -108,17 +108,11 @@ import 'materialize-css/dist/css/materialize.min.css'
                 value='true'
               />
             )
-          }
-        </form>
-      </div>
+          } -->
+      </form>
+      <!-- </div> -->
 
-      {
-        search && (
-          <p>
-            Links generated for: <b>{search}</b>
-          </p>
-        )
-      }
+      {search && <p>→ {search}</p>}
 
       <Language
         lang='en'
