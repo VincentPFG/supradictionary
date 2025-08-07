@@ -1,0 +1,65 @@
+---
+const search =
+  Astro.url.searchParams.get('search') || ''
+---
+
+<wa-dropdown>
+  <wa-button slot='trigger' with-caret
+    >WordReference</wa-button
+  >
+
+  <wa-dropdown-item>
+    English
+    <a
+      slot='submenu'
+      href=`https://www.wordreference.com/enes/${search}`
+      ><wa-dropdown-item>
+        Spanish
+      </wa-dropdown-item></a
+    >
+    <a
+      slot='submenu'
+      href=`https://www.wordreference.com/enfr/${search}`
+      ><wa-dropdown-item slot='submenu'>
+        French
+      </wa-dropdown-item></a
+    >
+  </wa-dropdown-item><wa-dropdown-item>
+    Spanish<a
+      slot='submenu'
+      href=`https://www.wordreference.com/esen/${search}`
+      ><wa-dropdown-item>
+        English
+      </wa-dropdown-item></a
+    >
+    <a
+      slot='submenu'
+      href=`https://www.wordreference.com/esfr/${search}`
+      ><wa-dropdown-item slot='submenu'>
+        French
+      </wa-dropdown-item></a
+    >
+    <a
+      slot='submenu'
+      href=`https://www.wordreference.com/conj/esverbs.aspx?v=${search}`
+      ><wa-dropdown-item slot='submenu'>
+        Conjugation
+      </wa-dropdown-item></a
+    >
+  </wa-dropdown-item><wa-dropdown-item>
+    French<a
+      slot='submenu'
+      href=`https://www.wordreference.com/fren/${search}`
+      ><wa-dropdown-item>
+        English
+      </wa-dropdown-item></a
+    >
+    <a
+      slot='submenu'
+      href=`https://www.wordreference.com/fres/${search}`
+      ><wa-dropdown-item slot='submenu'>
+        Spanish
+      </wa-dropdown-item></a
+    >
+  </wa-dropdown-item>
+</wa-dropdown>

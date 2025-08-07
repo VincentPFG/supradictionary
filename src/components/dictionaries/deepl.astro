@@ -1,0 +1,58 @@
+---
+const search =
+  Astro.url.searchParams.get('search') || ''
+---
+
+<wa-dropdown>
+  <wa-button slot='trigger' with-caret
+    >DeepL</wa-button
+  >
+
+  <wa-dropdown-item>
+    English
+    <a
+      slot='submenu'
+      href=`https://www.deepl.com/en/translator#en/es/${search}`
+      ><wa-dropdown-item>
+        Spanish
+      </wa-dropdown-item></a
+    >
+    <a
+      slot='submenu'
+      href=`https://www.deepl.com/en/translator#en/fr/${search}`
+      ><wa-dropdown-item slot='submenu'>
+        French
+      </wa-dropdown-item></a
+    >
+  </wa-dropdown-item><wa-dropdown-item>
+    Spanish<a
+      slot='submenu'
+      href=`https://www.deepl.com/es/translator#es/en/${search}`
+      ><wa-dropdown-item>
+        English
+      </wa-dropdown-item></a
+    >
+    <a
+      slot='submenu'
+      href=`https://www.deepl.com/es/translator#es/fr/${search}`
+      ><wa-dropdown-item slot='submenu'>
+        French
+      </wa-dropdown-item></a
+    >
+  </wa-dropdown-item><wa-dropdown-item>
+    French<a
+      slot='submenu'
+      href=`https://www.deepl.com/fr/translator#fr/en/${search}`
+      ><wa-dropdown-item>
+        English
+      </wa-dropdown-item></a
+    >
+    <a
+      slot='submenu'
+      href=`https://www.deepl.com/fr/translator#fr/es/${search}`
+      ><wa-dropdown-item slot='submenu'>
+        Spanish
+      </wa-dropdown-item></a
+    >
+  </wa-dropdown-item>
+</wa-dropdown>

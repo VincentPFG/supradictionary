@@ -16,20 +16,16 @@ const visibleDictionaries = dictionaries.filter(
     (full || dic.fave)
 )
 
-// // import 'materialize-css/dist/css/materialize.min.css'
-// import '@awesome.me/webawesome/dist/styles/webawesome.css';
-// import '@awesome.me/webawesome/dist/styles/themes/default.css';
+import MW from '../components/dictionaries/mw.astro'
+import W from '../components/dictionaries/wiktionary.astro'
+import YG from '../components/dictionaries/youglish.astro'
+import WR from '../components/dictionaries/wr.astro'
+import DL from '../components/dictionaries/deepl.astro'
+import Ox from '../components/dictionaries/oxford.astro'
+import R from '../components/dictionaries/robert.astro'
 
-// // For <wa-button>
-// import '@awesome.me/webawesome/dist/components/button/button.js';
-
-// // For <wa-input>
-// import '@awesome.me/webawesome/dist/components/input/input.js';
-
-// // For <wa-dropdown>
-// import '@awesome.me/webawesome/dist/components/dropdown/dropdown.js';
-// import '@awesome.me/webawesome/dist/components/menu/menu.js';
-// import '@awesome.me/webawesome/dist/components/menu-item/menu-item.js';
+import '@awesome.me/webawesome/dist/styles/webawesome.css'
+import '@awesome.me/webawesome/dist/components/button/button.js'
 ---
 
 <html lang='en'>
@@ -53,98 +49,47 @@ const visibleDictionaries = dictionaries.filter(
         `${search && `${search} – `}SupraDictionary`
       }
     </title>
-    <link
-      rel='stylesheet'
-      href='https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/styles/webawesome.css'
-    />
     <script
       type='module'
       src='https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/webawesome.loader.js'
-    ></script>
+      defer></script>
   </head>
 
-  <body>
+  <body class='grid place-items-center'>
     <header>
-      <nav class='blue-grey'>
-        <div class='nav-wrapper'>
-          <a href={'/'} class='brand-logo center'
-            >SupraDictionary</a
-          >
-        </div>
-      </nav>
+      <h1 class='text-2xl font-semibold'>
+        <a
+          href='/'
+          class='text-inherit no-underline hover:underline'
+        >
+          SupraDictionary
+        </a>
+      </h1>
     </header>
 
-    <main class='container mx-auto p-6'>
-      <p class='center'>
-        <wa-tag pill>English</wa-tag>
-        <wa-tag pill>Spanish</wa-tag>
-        <wa-tag pill>French</wa-tag>
-      </p>
+    <div>
+      <wa-tag pill>English</wa-tag>
+      <wa-tag pill>Spanish</wa-tag>
+      <wa-tag pill>French</wa-tag>
+    </div>
 
-      <form>
-        <wa-input
-          type='text'
-          name='search'
-          autofocus
-          autocapitalize='off'
-          placeholder='Type then press Enter'
-          label='Search'
-          pill></wa-input>
-      </form>
-      {search && <wa-tag pill>{search}</wa-tag>}
-      <!-- Merriam-Webster -->
-      <wa-button
-        href=`https://www.merriam-webster.com/dictionary/${search}`
-        >Merriam-Webster</wa-button
-      >
-      <!-- Wiktionary -->
-      <wa-dropdown>
-        <wa-button slot='trigger' with-caret
-          >Wiktionary</wa-button
-        >
-        <a
-          href=`https://en.wiktionary.org/wiki/${search}`
-          ><wa-dropdown-item>
-            English
-          </wa-dropdown-item></a
-        >
-        <a
-          href=`https://es.wiktionary.org/wiki/${search}`
-          ><wa-dropdown-item>
-            Spanish
-          </wa-dropdown-item></a
-        >
-        <a
-          href=`https://fr.wiktionary.org/wiki/${search}`
-          ><wa-dropdown-item>
-            French
-          </wa-dropdown-item></a
-        >
-      </wa-dropdown>
-      <!-- YouGlish -->
-      <wa-dropdown>
-        <wa-button slot='trigger' with-caret
-          >YouGlish</wa-button
-        >
-        <a
-          href=`https://youglish.com/pronounce/${search}/english`
-          ><wa-dropdown-item>
-            English
-          </wa-dropdown-item></a
-        >
-        <a
-          href=`https://youglish.com/pronounce/${search}/spanish`
-          ><wa-dropdown-item>
-            Spanish
-          </wa-dropdown-item></a
-        >
-        <a
-          href=`https://youglish.com/pronounce/${search}/french`
-          ><wa-dropdown-item>
-            French
-          </wa-dropdown-item></a
-        >
-      </wa-dropdown>
-    </main>
+    <form>
+      <wa-input
+        type='text'
+        name='search'
+        autofocus
+        autocapitalize='off'
+        placeholder='Type then press Enter'
+        label='Search'
+        pill></wa-input>
+    </form>
+    <wa-tag pill>{search}</wa-tag>
+    <MW />
+    <WR />
+    <Ox />
+    <DL />
+    <R />
+    <W />
+    <YG />
   </body>
 </html>

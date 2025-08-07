@@ -1,0 +1,28 @@
+---
+const search =
+  Astro.url.searchParams.get('search') || ''
+---
+
+<wa-dropdown>
+  <wa-button slot='trigger' with-caret
+    >Wiktionary</wa-button
+  >
+  <a
+    href=`https://en.wiktionary.org/wiki/${search}`
+    ><wa-dropdown-item>
+      English
+    </wa-dropdown-item></a
+  >
+  <a
+    href=`https://es.wiktionary.org/wiki/${search}`
+    ><wa-dropdown-item>
+      Spanish
+    </wa-dropdown-item></a
+  >
+  <a
+    href=`https://fr.wiktionary.org/wiki/${search}`
+    ><wa-dropdown-item>
+      French
+    </wa-dropdown-item></a
+  >
+</wa-dropdown>

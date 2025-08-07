@@ -1,0 +1,22 @@
+---
+const search =
+  Astro.url.searchParams.get('search') || ''
+---
+
+<wa-dropdown>
+  <wa-button slot='trigger' with-caret
+    >Robert</wa-button
+  >
+  <a
+    href=`https://dictionnaire.lerobert.com/definition/${search}`
+    ><wa-dropdown-item>
+      Definition
+    </wa-dropdown-item></a
+  >
+  <a
+    href=`https://dictionnaire.lerobert.com/conjugaison/${search}`
+    ><wa-dropdown-item>
+      Conjugation
+    </wa-dropdown-item></a
+  >
+</wa-dropdown>

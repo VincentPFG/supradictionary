@@ -1,0 +1,28 @@
+---
+const search =
+  Astro.url.searchParams.get('search') || ''
+---
+
+<wa-dropdown>
+  <wa-button slot='trigger' with-caret
+    >YouGlish</wa-button
+  >
+  <a
+    href=`https://youglish.com/pronounce/${search}/english`
+    ><wa-dropdown-item>
+      English
+    </wa-dropdown-item></a
+  >
+  <a
+    href=`https://youglish.com/pronounce/${search}/spanish`
+    ><wa-dropdown-item>
+      Spanish
+    </wa-dropdown-item></a
+  >
+  <a
+    href=`https://youglish.com/pronounce/${search}/french`
+    ><wa-dropdown-item>
+      French
+    </wa-dropdown-item></a
+  >
+</wa-dropdown>

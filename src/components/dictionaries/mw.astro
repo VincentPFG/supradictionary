@@ -1,0 +1,11 @@
+---
+const search =
+  Astro.url.searchParams.get('search') || ''
+
+import '@awesome.me/webawesome/dist/components/button/button.js'
+---
+
+<wa-button
+  href=`https://www.merriam-webster.com/dictionary/${search}`
+  >Merriam-Webster</wa-button
+>

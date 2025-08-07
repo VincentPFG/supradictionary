@@ -1,0 +1,22 @@
+---
+const search =
+  Astro.url.searchParams.get('search') || ''
+---
+
+<wa-dropdown>
+  <wa-button slot='trigger' with-caret
+    >Oxford</wa-button
+  >
+  <a
+    href=`https://www.oxfordlearnersdictionaries.com/definition/english/${search}`
+    ><wa-dropdown-item>
+      English
+    </wa-dropdown-item></a
+  >
+  <a
+    href=`https://www.oxfordlearnersdictionaries.com/definition/american_english/${search}`
+    ><wa-dropdown-item>
+      American English
+    </wa-dropdown-item></a
+  >
+</wa-dropdown>
