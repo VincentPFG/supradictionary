@@ -16,7 +16,20 @@ const visibleDictionaries = dictionaries.filter(
     (full || dic.fave)
 )
 
-import 'materialize-css/dist/css/materialize.min.css'
+// // import 'materialize-css/dist/css/materialize.min.css'
+// import '@awesome.me/webawesome/dist/styles/webawesome.css';
+// import '@awesome.me/webawesome/dist/styles/themes/default.css';
+
+// // For <wa-button>
+// import '@awesome.me/webawesome/dist/components/button/button.js';
+
+// // For <wa-input>
+// import '@awesome.me/webawesome/dist/components/input/input.js';
+
+// // For <wa-dropdown>
+// import '@awesome.me/webawesome/dist/components/dropdown/dropdown.js';
+// import '@awesome.me/webawesome/dist/components/menu/menu.js';
+// import '@awesome.me/webawesome/dist/components/menu-item/menu-item.js';
 ---
 
 <html lang='en'>
@@ -40,6 +53,14 @@ import 'materialize-css/dist/css/materialize.min.css'
         `${search && `${search} – `}SupraDictionary`
       }
     </title>
+    <link
+      rel='stylesheet'
+      href='https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/styles/webawesome.css'
+    />
+    <script
+      type='module'
+      src='https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/webawesome.loader.js'
+    ></script>
   </head>
 
   <body>
@@ -53,84 +74,77 @@ import 'materialize-css/dist/css/materialize.min.css'
       </nav>
     </header>
 
-    <main class='container'>
-      <!-- <div
-        class='show-on-small hide-on-med-and-up'
-        style='height:5cm'
-      > -->
-
+    <main class='container mx-auto p-6'>
       <p class='center'>
-        <span class='purple white-text chip'
-          >English</span
-        >
-        <span class='red white-text chip'
-          >Spanish</span
-        >
-        <span class='grey white-text chip'
-          >French</span
-        >
+        <wa-tag pill>English</wa-tag>
+        <wa-tag pill>Spanish</wa-tag>
+        <wa-tag pill>French</wa-tag>
       </p>
 
-      <!-- <p class='center-align'> -->
-      <!-- <a
-          href=`/?search=${search}${full ? '' :'&full=true'}`
-          class='btn blue-grey'
-          >{
-            full
-              ? 'light version'
-              : 'full version'
-          }</a
-        > -->
-      <!-- <a
-        href=`/?search=${search}`
-        class='btn blue-grey'>light version</a
-      > -->
-      <!-- <a
-          href=`/?search=${search}&full=true`
-          class='btn blue-grey'>full version</a
-        >
-      </p> -->
-      <!-- <div> -->
       <form>
-        <label for='search'>Search</label>
-        <input
+        <wa-input
           type='text'
           name='search'
           autofocus
           autocapitalize='off'
           placeholder='Type then press Enter'
-        />
-        <!-- {
-            full && (
-              <input
-                type='hidden'
-                name='full'
-                value='true'
-              />
-            )
-          } -->
+          label='Search'
+          pill></wa-input>
       </form>
-      <!-- </div> -->
-
-      {search && <p>→ {search}</p>
-
-      <Language
-        lang='en'
-        list={visibleDictionaries}
-        color='purple'
-      />
-
-      <Language
-        lang='es'
-        list={visibleDictionaries}
-        color='red'
-      />
-
-      <Language
-        lang='fr'
-        list={visibleDictionaries}
-        color='grey'
-      />}
+      {search && <wa-tag pill>{search}</wa-tag>}
+      <!-- Merriam-Webster -->
+      <wa-button
+        href=`https://www.merriam-webster.com/dictionary/${search}`
+        >Merriam-Webster</wa-button
+      >
+      <!-- Wiktionary -->
+      <wa-dropdown>
+        <wa-button slot='trigger' with-caret
+          >Wiktionary</wa-button
+        >
+        <a
+          href=`https://en.wiktionary.org/wiki/${search}`
+          ><wa-dropdown-item>
+            English
+          </wa-dropdown-item></a
+        >
+        <a
+          href=`https://es.wiktionary.org/wiki/${search}`
+          ><wa-dropdown-item>
+            Spanish
+          </wa-dropdown-item></a
+        >
+        <a
+          href=`https://fr.wiktionary.org/wiki/${search}`
+          ><wa-dropdown-item>
+            French
+          </wa-dropdown-item></a
+        >
+      </wa-dropdown>
+      <!-- YouGlish -->
+      <wa-dropdown>
+        <wa-button slot='trigger' with-caret
+          >YouGlish</wa-button
+        >
+        <a
+          href=`https://youglish.com/pronounce/${search}/english`
+          ><wa-dropdown-item>
+            English
+          </wa-dropdown-item></a
+        >
+        <a
+          href=`https://youglish.com/pronounce/${search}/spanish`
+          ><wa-dropdown-item>
+            Spanish
+          </wa-dropdown-item></a
+        >
+        <a
+          href=`https://youglish.com/pronounce/${search}/french`
+          ><wa-dropdown-item>
+            French
+          </wa-dropdown-item></a
+        >
+      </wa-dropdown>
     </main>
   </body>
 </html>
